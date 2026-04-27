@@ -1,0 +1,57 @@
+# ── Python ──────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# ── Environment / Secrets ───────────────
+.env
+*.env
+!.env.example
+
+# ── FAISS / ML model cache ──────────────
+faiss_index.pkl
+*.pkl
+*.bin
+*.safetensors
+sentence_transformers/
+
+# HuggingFace cache
+.cache/
+
+# ── Node / Frontend ─────────────────────
+node_modules/
+frontend/dist/
+frontend/.env
+*.local
+
+# Vite cache
+.vite/
+
+# ── IDE / OS ────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Logs ────────────────────────────────
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
