@@ -299,56 +299,112 @@ MOCK_PRODUCTS = [
 ]
 
 
-def fetch_and_cache_products(shop_url: str, storefront_token: str) -> int:
+def fetch_products_public(shop_url: str) -> list:
     """
-    Fetch products from Shopify Storefront GraphQL API and cache locally.
-    shop_url: e.g. 'your-store.myshopify.com' (no https://)
+    Fetch products using Shopify's public REST API — NO token required.
+    shop_url: e.g. 'pixelcart-dev.myshopify.com'
     """
     url = shop_url.strip().rstrip("/")
     if not url.startswith("http"):
         url = f"https://{url}"
-    endpoint = f"{url}/api/2024-01/graphql.json"
+    endpoint = f"{url}/products.json?limit=250"
 
-    resp = requests.post(
-        endpoint,
-        json={"query": GQL_QUERY},
-        headers={
-            "X-Shopify-Storefront-Access-Token": storefront_token,
-            "Content-Type": "application/json",
-        },
-        timeout=15,
-    )
+    resp = requests.get(endpoint, timeout=15)
     resp.raise_for_status()
     data = resp.json()
 
-    if "errors" in data:
-        raise ValueError(f"Shopify GraphQL error: {data['errors'][0]['message']}")
-
     products = []
-    for edge in data["data"]["products"]["edges"]:
-        node = edge["node"]
+    for p in data.get("products", []):
         image_url = ""
-        if node["images"]["edges"]:
-            image_url = node["images"]["edges"][0]["node"]["url"]
+        if p.get("images"):
+            image_url = p["images"][0].get("src", "")
 
-        price_info = node["priceRange"]["minVariantPrice"]
-        in_stock = any(
-            v["node"]["availableForSale"] for v in node["variants"]["edges"]
-        )
+        variants = p.get("variants", [])
+        price = float(variants[0]["price"]) if variants else 0.0
+        in_stock = any(v.get("available", True) for v in variants)
+
+        # tags come as comma-separated string in REST API
+        raw_tags = p.get("tags", "")
+        tags = [t.strip() for t in raw_tags.split(",")] if raw_tags else []
+
+        store_handle = url.rstrip("/")
+        product_url = f"{store_handle}/products/{p.get('handle', '')}"
 
         products.append({
-            "id":          node["id"],
-            "title":       node["title"],
-            "description": node.get("description") or "",
-            "tags":        node.get("tags", []),
-            "vendor":      node.get("vendor", ""),
-            "type":        node.get("productType", ""),
-            "price":       float(price_info["amount"]),
-            "currency":    price_info["currencyCode"],
+            "id":          str(p["id"]),
+            "title":       p.get("title", ""),
+            "description": p.get("body_html", "").replace("<p>", "").replace("</p>", "").strip(),
+            "tags":        tags,
+            "vendor":      p.get("vendor", ""),
+            "type":        p.get("product_type", ""),
+            "price":       price,
+            "currency":    "INR",
             "image":       image_url,
-            "url":         node.get("onlineStoreUrl") or "#",
+            "url":         product_url,
             "in_stock":    in_stock,
         })
+
+    return products
+
+
+def fetch_and_cache_products(shop_url: str, storefront_token: str = "") -> int:
+    """
+    Fetch products from Shopify and cache locally.
+    - If storefront_token provided: uses Storefront GraphQL API
+    - If no token: uses public REST API (no auth needed)
+    shop_url: e.g. 'pixelcart-dev.myshopify.com'
+    """
+    if storefront_token:
+        # ── Authenticated GraphQL path ──────────────────────────────────────
+        url = shop_url.strip().rstrip("/")
+        if not url.startswith("http"):
+            url = f"https://{url}"
+        endpoint = f"{url}/api/2024-01/graphql.json"
+
+        resp = requests.post(
+            endpoint,
+            json={"query": GQL_QUERY},
+            headers={
+                "X-Shopify-Storefront-Access-Token": storefront_token,
+                "Content-Type": "application/json",
+            },
+            timeout=15,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+
+        if "errors" in data:
+            raise ValueError(f"Shopify GraphQL error: {data['errors'][0]['message']}")
+
+        products = []
+        for edge in data["data"]["products"]["edges"]:
+            node = edge["node"]
+            image_url = ""
+            if node["images"]["edges"]:
+                image_url = node["images"]["edges"][0]["node"]["url"]
+
+            price_info = node["priceRange"]["minVariantPrice"]
+            in_stock = any(
+                v["node"]["availableForSale"] for v in node["variants"]["edges"]
+            )
+
+            products.append({
+                "id":          node["id"],
+                "title":       node["title"],
+                "description": node.get("description") or "",
+                "tags":        node.get("tags", []),
+                "vendor":      node.get("vendor", ""),
+                "type":        node.get("productType", ""),
+                "price":       float(price_info["amount"]),
+                "currency":    price_info["currencyCode"],
+                "image":       image_url,
+                "url":         node.get("onlineStoreUrl") or "#",
+                "in_stock":    in_stock,
+            })
+    else:
+        # ── Public REST API path (no token needed) ──────────────────────────
+        print(f"[Shopify] No token provided — using public REST API for {shop_url}")
+        products = fetch_products_public(shop_url)
 
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(products, f, indent=2, ensure_ascii=False)

@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 load_dotenv()  # Must be first — loads ANTHROPIC_API_KEY from .env
 
@@ -15,7 +16,19 @@ sessions: dict = {}
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("[Pixelcart] Starting up...")
-    prods = load_products()  # Returns mock data if no Shopify cache
+
+    # Auto-fetch from Shopify on startup if store URL is configured
+    shop_url = os.getenv("SHOPIFY_STORE_URL", "")
+    shop_token = os.getenv("SHOPIFY_STOREFRONT_TOKEN", "")
+    if shop_url and shop_url != "your-store.myshopify.com":
+        try:
+            print(f"[Shopify] Auto-fetching products from {shop_url}...")
+            count = fetch_and_cache_products(shop_url, shop_token)
+            print(f"[Shopify] {count} products fetched and cached [OK]")
+        except Exception as e:
+            print(f"[Shopify] Auto-fetch failed: {e} — falling back to mock/cache")
+
+    prods = load_products()
     print(f"[Pixelcart] {len(prods)} products loaded. Building FAISS index...")
     build_faiss_index(prods)
     print("[Pixelcart] FAISS index ready [OK]")
@@ -38,7 +51,7 @@ class ChatRequest(BaseModel):
 
 class ShopifyConnectRequest(BaseModel):
     shopify_url: str
-    storefront_token: str
+    storefront_token: str = ""  # optional — works without token via public REST API
 
 @app.get("/")
 def root():
@@ -52,7 +65,8 @@ def health():
 def connect_shopify(req: ShopifyConnectRequest):
     """Fetch from Shopify, cache locally, rebuild FAISS index."""
     try:
-        count = fetch_and_cache_products(req.shopify_url, req.storefront_token)
+        token = req.storefront_token if req.storefront_token else os.getenv("SHOPIFY_STOREFRONT_TOKEN", "")
+        count = fetch_and_cache_products(req.shopify_url, token)
         prods = load_products()
         build_faiss_index(prods)
         return {"success": True, "products_cached": count, "message": f"Loaded {count} products from Shopify [OK]"}

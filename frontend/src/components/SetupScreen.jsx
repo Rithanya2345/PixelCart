@@ -18,7 +18,6 @@ const HOW_IT_WORKS = [
 
 export default function SetupScreen({ onLaunch }) {
   const [shopUrl,    setShopUrl]    = useState("");
-  const [shopToken,  setShopToken]  = useState("");
   const [status,     setStatus]     = useState(null);
   const [connecting, setConnecting] = useState(false);
 
@@ -29,11 +28,11 @@ export default function SetupScreen({ onLaunch }) {
       return;
     }
 
-    if (shopUrl && shopToken) {
+    if (shopUrl) {
       setConnecting(true);
       setStatus({ type: "loading", text: "Connecting to Shopify and building search index…" });
       try {
-        const res = await connectShopify(shopUrl.trim(), shopToken.trim());
+        const res = await connectShopify(shopUrl.trim(), "");
         setStatus({ type: "success", text: res.message });
         setTimeout(() => onLaunch({ shopify: true, productCount: res.products_cached }), 900);
       } catch (err) {
@@ -142,22 +141,7 @@ export default function SetupScreen({ onLaunch }) {
             />
           </div>
 
-          {/* Token */}
-          <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] text-muted uppercase tracking-wider">Storefront Access Token</label>
-            <input
-              className="input-field"
-              type="password"
-              placeholder="Storefront API token…"
-              value={shopToken}
-              onChange={(e) => setShopToken(e.target.value)}
-              autoComplete="off"
-              id="shopify-token"
-            />
-            <p className="text-[10px] text-muted2 leading-relaxed">
-              Shopify Admin → Settings → Apps → Develop apps → Create app → Storefront API → read_products → Install → copy token.
-            </p>
-          </div>
+
 
           {/* Status */}
           {status && (
