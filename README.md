@@ -230,9 +230,9 @@ pixelcart/
 
 | Document | Description |
 |---|---|
-| [Product Document](docs/PRODUCT_DOC.md) | What we built, for whom, why. Key decisions and tradeoffs. |
-| [Technical Document](docs/TECHNICAL_DOC.md) | Architecture, implementation details, failure handling, limitations. |
-| [Decision Log](docs/DECISION_LOG.md) | Key decisions — "considered X, chose Y, because Z." |
+| [Product Document](docs/Product.pdf) | What we built, for whom, why. Key decisions and tradeoffs. |
+| [Technical Document](docs/Technical.pdf) | Architecture, implementation details, failure handling, limitations. |
+| [Decision Log](docs/Decision%20Logs.pdf) | Key decisions — "considered X, chose Y, because Z." |
 
 ---
 
