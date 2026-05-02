@@ -55,6 +55,3 @@ logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Ignore local markdown readme
-README.md
