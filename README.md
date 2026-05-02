@@ -127,7 +127,7 @@ User Message
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/pixelcart.git
+git clone https://github.com/Rithanya2345/PixelCart.git
 cd pixelcart
 ```
 
