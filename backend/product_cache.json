@@ -1,1 +1,218 @@
-[]
+[
+  {
+    "id": "gid://shopify/Product/8905461694524",
+    "title": "Nike Court Vision Low Sneakers — White",
+    "description": "Nike Court Vision Low men's casual sneaker. Leather upper, foam midsole, rubber outsole. Classic clean white colourway. Lightweight everyday trainer.",
+    "tags": [
+      "casual",
+      "footwear",
+      "leather",
+      "lightweight",
+      "men",
+      "nike",
+      "sneakers",
+      "white"
+    ],
+    "vendor": "pixelcart-dev",
+    "type": "",
+    "price": 3695.0,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0715/9250/9500/files/Screenshot2026-05-02092429.png?v=1777694091",
+    "url": "#",
+    "in_stock": true
+  },
+  {
+    "id": "gid://shopify/Product/8905470804028",
+    "title": "Bata Power Men's Running Sports Shoes",
+    "description": "Bata Power lightweight EVA sole running shoes. Mesh upper for breathability, cushioned insole, anti-skid rubber outsole. Available in black and grey.",
+    "tags": [
+      "bata",
+      "exercise",
+      "gym",
+      "lightweight",
+      "men",
+      "running",
+      "shoes",
+      "sports"
+    ],
+    "vendor": "pixelcart-dev",
+    "type": "",
+    "price": 1299.0,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0715/9250/9500/files/Screenshot2026-05-02092849.png?v=1777694342",
+    "url": "#",
+    "in_stock": true
+  },
+  {
+    "id": "gid://shopify/Product/8905497313340",
+    "title": "Roadster Women's Slip-On Sneakers — Blush Pink",
+    "description": "Roadster slip-on canvas sneakers for women. Soft pink colourway, elastic side panels, cushioned footbed, rubber sole. Casual daily wear.",
+    "tags": [
+      "canvas",
+      "casual",
+      "pink",
+      "roadster",
+      "slip-on",
+      "sneakers",
+      "women"
+    ],
+    "vendor": "pixelcart-dev",
+    "type": "",
+    "price": 699.0,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0715/9250/9500/files/Screenshot2026-05-02094204.png?v=1777695136",
+    "url": "#",
+    "in_stock": true
+  },
+  {
+    "id": "gid://shopify/Product/8905503735868",
+    "title": "H&M Women's Oversized Linen Shirt — Beige",
+    "description": "H&M relaxed oversized linen-blend shirt in warm beige. Button-front, dropped shoulders, side slits. Pairs well with jeans or trousers for casual outings.",
+    "tags": [
+      "beige",
+      "casual",
+      "H&M",
+      "linen",
+      "oversized",
+      "shirt",
+      "summer",
+      "women"
+    ],
+    "vendor": "pixelcart-dev",
+    "type": "",
+    "price": 1499.0,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0715/9250/9500/files/Screenshot2026-05-02094420.png?v=1777695274",
+    "url": "#",
+    "in_stock": true
+  },
+  {
+    "id": "gid://shopify/Product/8905510748220",
+    "title": "Jack & Jones Men's Slim Jeans — Dark Blue",
+    "description": "Jack & Jones Glenn slim-fit jeans in dark indigo blue. Stretch denim, 5-pocket styling, mid-rise waist. Smart-casual and office-casual occasions",
+    "tags": [
+      "blue",
+      "casual",
+      "denim",
+      "jeans",
+      "men",
+      "office",
+      "slim",
+      "stretch"
+    ],
+    "vendor": "pixelcart-dev",
+    "type": "",
+    "price": 1799.0,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0715/9250/9500/files/Screenshot2026-05-02094715.png?v=1777695450",
+    "url": "#",
+    "in_stock": true
+  },
+  {
+    "id": "gid://shopify/Product/8905519923260",
+    "title": "boAt Airdopes 141 TWS Earbuds — Black",
+    "description": "boAt Airdopes 141 true wireless earbuds. 42hr total playtime, ENx noise isolation, IPX4 sweat-resistant, instant voice assistant, 10mm drivers for deep bass.",
+    "tags": [
+      "bass",
+      "bluetooth",
+      "boat",
+      "earbuds",
+      "gym",
+      "music",
+      "noise-isolation",
+      "wireless"
+    ],
+    "vendor": "pixelcart-dev",
+    "type": "",
+    "price": 1299.0,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0715/9250/9500/files/Screenshot2026-05-02095047.png?v=1777695701",
+    "url": "#",
+    "in_stock": true
+  },
+  {
+    "id": "gid://shopify/Product/8905544794172",
+    "title": "Fire-Boltt Phoenix Ultra Smartwatch — Black",
+    "description": "Fire-Boltt 1.46\" AMOLED smartwatch. Always-on display, Bluetooth calling, 100+ sports modes, heart rate & SpO2 monitoring, 7-day battery, IP68 waterproof.",
+    "tags": [
+      "amoled",
+      "bluetooth",
+      "fireboltt",
+      "fitness",
+      "heart-rate",
+      "smartwatch",
+      "watch"
+    ],
+    "vendor": "pixelcart-dev",
+    "type": "",
+    "price": 1799.0,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0715/9250/9500/files/Screenshot2026-05-02100148.png?v=1777696342",
+    "url": "#",
+    "in_stock": true
+  },
+  {
+    "id": "gid://shopify/Product/8905578676284",
+    "title": "Fastrack Aviator Sunglasses — Gold Brown",
+    "description": "Fastrack UV400 aviator sunglasses with gold metal frame and brown gradient lenses. 100% UV protection, lightweight, includes case. Unisex style.",
+    "tags": [
+      "accessories",
+      "aviator",
+      "fastrack",
+      "summer",
+      "sunglasses",
+      "unisex",
+      "UV400"
+    ],
+    "vendor": "pixelcart-dev",
+    "type": "",
+    "price": 849.0,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0715/9250/9500/files/Screenshot2026-05-02101708.png?v=1777697238",
+    "url": "#",
+    "in_stock": true
+  },
+  {
+    "id": "gid://shopify/Product/8905591554108",
+    "title": "Boldfit Yoga Mat 6mm Anti-Slip with Carry Bag",
+    "description": "Boldfit premium TPE yoga mat 6mm thick, anti-slip texture both sides. Alignment lines, moisture-wicking, eco-friendly. Includes carry bag and strap.",
+    "tags": [
+      "boldfit",
+      "eco",
+      "exercise",
+      "fitness",
+      "gym",
+      "mat",
+      "sports",
+      "yoga"
+    ],
+    "vendor": "pixelcart-dev",
+    "type": "",
+    "price": 799.0,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0715/9250/9500/files/Screenshot2026-05-02102212.png?v=1777697587",
+    "url": "#",
+    "in_stock": true
+  },
+  {
+    "id": "gid://shopify/Product/8905596076092",
+    "title": "Atomic Habits — James Clear (Paperback)",
+    "description": "International bestseller on building good habits and breaking bad ones. Practical, science-backed framework for 1% improvements that compound over time.",
+    "tags": [
+      "bestseller",
+      "book",
+      "habits",
+      "james-clear",
+      "paperback",
+      "productivity",
+      "self-help"
+    ],
+    "vendor": "pixelcart-dev",
+    "type": "",
+    "price": 499.0,
+    "currency": "INR",
+    "image": "https://cdn.shopify.com/s/files/1/0715/9250/9500/files/Screenshot2026-05-02102437.png?v=1777697692",
+    "url": "#",
+    "in_stock": true
+  }
+]
